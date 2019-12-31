@@ -12,7 +12,7 @@ const options = {
   https: false
 };
 
-let connection = thrift.createHttpConnection('fialka.top', 2333, options);
+let connection = thrift.createHttpConnection('aowatchsea.xyz', 2333, options);
 
 let client = thrift.createHttpClient(rpcSetup, connection);
 connection.on('error', (err) => {

@@ -20,7 +20,7 @@
 
       <v-col span="3">
         <v-button type="primary" @click="next" :disabled="flag_r" style="postion:relative; top:15px;left:-30px;" :loading="b_loading">
-          next <v-icon type="right"></v-icon>
+          next
         </v-button>
       </v-col>
     </v-row>
@@ -54,7 +54,7 @@
 
         <v-card title="Blockchain Information" class="block_message" :loading="block_loading">
           
-          <v-tag v-for="statu in status" :color="statu.C" v-bind:key="statu.C">
+          <v-tag class="li-item" v-for="statu in status" :color="statu.C" v-bind:key="statu.C">
             {{ statu.T }}
           </v-tag>
           <br/><br/>
@@ -71,6 +71,8 @@
 
     <v-modal title="Choose a group type"
              :visible="visible_init"
+             okText="Confirm"
+             cancelText="Cancel"
              @ok="handleOk_init"
              @cancel="handleCancel"
              :confirm-loading="asyncConfirmLoading">
@@ -81,6 +83,8 @@
     </v-modal>
 
     <v-modal title="Please input the address"
+             okText="Confirm"
+             cancelText="Cancel"
              :visible="visible_addre"
              @ok="handleOk_addre"
              @cancel="handleCancel"
@@ -160,8 +164,8 @@ export default {
       tag: null,
       message: null,
       address: null,
-      // local_gateway: 'ws://localhost:8546',
-      local_gateway: 'ws://fialka.top:8546',
+      local_gateway: 'ws://localhost:8546',
+      // local_gateway: 'ws://aowatchsea.xyz:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       public_credential: '',
       gateway_util: '',

@@ -17,7 +17,7 @@
 
       <v-col span="3">
         <v-button type="primary" @click="next" :disabled="flag_s" style="postion:relative; top:15px;left:-30px;" :loading="b_loading">
-          next <v-icon type="right"></v-icon>
+          next
         </v-button>
       </v-col>
     </v-row>
@@ -39,7 +39,7 @@
         </v-card>
 
         <v-card title="Blockchain Information" class="block_message" :loading="block_loading">
-          <v-tag v-for="statu in status" :color="statu.C" v-bind:key="statu.C">
+          <v-tag class="li-item" v-for="statu in status" :color="statu.C" v-bind:key="statu.C">
             {{ statu.T }}
           </v-tag>
           
@@ -57,6 +57,8 @@
     </v-row>
 
     <v-modal title="Enter your message"
+             okText="Confirm"
+             cancelText="Cancel"
              :visible="visible_enc"
              @ok="handleOk_enc"
              @cancel="handleCancel"
@@ -127,15 +129,14 @@ export default {
       D2: null,
       E: null,
       C: null,
-      // local_gateway: 'ws://localhost:8546',
-      local_gateway: 'ws://fialka.top:8546',
+      local_gateway: 'ws://localhost:8546',
+      // local_gateway: 'ws://aowatchsea.xyz:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       gateway_util: '',
       public_credential: '',
       bytecode: 'simstore.wasm',
       blackBox: null,
       status: [
-        
       ]
     }
   },
@@ -229,7 +230,7 @@ export default {
       // this.$emit('activeR');
       this.$emit('switchAll');
       this.flag++;
-      this.ret_loading = false;
+      // this.ret_loading = false;
       this.b_loading = false;
       // window.console.log(await this.gateway_util.eth.gasPrice());
       let info = await this.gateway_util.eth.getBlockByNumber('latest', true);
@@ -274,6 +275,7 @@ export default {
            });
            this.flag++;
            this.visible_enc = false;
+           this.ret_loading = false;
            this.asyncConfirmLoading = false;
            this.enc_loading = false;
            this.b_loading = false;

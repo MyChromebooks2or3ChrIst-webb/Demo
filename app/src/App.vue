@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <h1>Fialka: A Decentralized End-User Accountability FrameworkBased on Privacy Preserving Smart Contract</h1>
+    <h1>Fialka: A Decentralized End-User Accountability Framework Based on Privacy Preserving Smart Contract</h1>
     <center><v-icon type="copy"></v-icon> PPSC</center>
     <br/>
     <hr/>
@@ -97,5 +97,8 @@ export default {
 .block_message {
   margin-bottom: 30px;
   overflow: hidden;
+}
+.li-item {
+  margin-bottom: 10px;
 }
 </style>
