@@ -164,7 +164,7 @@ export default {
       tag: null,
       message: null,
       address: null,      
-      local_gateway: 'ws://aowatchsea.xyz:8546',
+      local_gateway: 'ws://localhost:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       public_credential: '',
       gateway_util: '',

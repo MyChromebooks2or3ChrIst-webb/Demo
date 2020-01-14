@@ -14,7 +14,7 @@ use time::PreciseTime;
 struct Simstore{
     secret: String,
     admin: Address,
-    policy: String,
+    // policy: String,
     // hint: Map<Address, String>
     hint: Map<String, Set<Address>>
 }
@@ -22,30 +22,34 @@ struct Simstore{
 type Result<T> = std::result::Result<T, String>;
 
 impl Simstore {
-    pub fn new(ctx: &Context, policy: String) -> Self {
+    pub fn new(ctx: &Context, secret: String) -> Self {
         Self{
-            secret: String::new(),
+            // secret: String::new(),
+            secret: secret.to_string(),
             admin: ctx.sender(),
-            policy: policy.to_string(),
+            // policy: policy.to_string(),
             hint: Map::new()
         }
     }
 
     pub fn regist(&mut self, ctx: &Context, secret: String, policy: String) -> Result<(String)> {
         // Only creator can change the secret
-        if self.admin != ctx.sender() {
-            return Err("You will be punished!".to_string())
-        }
+        // 
+        // if self.admin != ctx.sender() {
+        //     return Err("You will be punished!".to_string())
+        // }
         self.secret = secret;
         let mut temp = Set::new();
         temp.insert(self.admin);
+        self.hint.insert(policy, temp);
+        return Ok("Success".to_string());
 
-        if self.policy != policy {            
-            self.hint.insert(policy, temp);
-            return Ok("Keep Traditional".to_string());
-        }
-        self.hint.insert(self.policy.clone(), temp);
-        return Ok("New One".to_string());
+        // if self.policy != policy {            
+        //     self.hint.insert(policy, temp);
+        //     return Ok("Keep Traditional".to_string());
+        // }
+        // self.hint.insert(self.policy.clone(), temp);
+        // return Ok("New One".to_string());
     }
 
     pub fn update(&mut self, ctx: &Context, v: String, policy: String) -> Result<Vec<u8>> {
@@ -63,9 +67,9 @@ impl Simstore {
         return Err("Not Mattched".to_string());
     }
 
-    pub fn inspect(&mut self, _ctx: &Context, tx: Address, p: String) -> bool {
+    pub fn inspect(&mut self, ctx: &Context, p: String) -> bool {
         if let Some(x) = self.hint.get_mut(&p) {
-            if x.contains(&tx) {
+            if x.contains(&ctx.sender()) {
                 return true;
             }
             return false;
@@ -91,7 +95,7 @@ mod tests {
             
             let sender = oasis_test::create_account(1);
             let ctx = Context::default().with_sender(sender);
-            let mut client = Simstore::new(&ctx, "policy".to_string());
+            let mut client = Simstore::new(&ctx, "9527".to_string());
             
             let s2 = PreciseTime::now();
 
@@ -103,7 +107,7 @@ mod tests {
 
             let s4 = PreciseTime::now();
 
-            let _ret3 = client.inspect(&ctx, ctx.sender(), "policy".to_string());
+            let _ret3 = client.inspect(&ctx, "policy".to_string());
 
             let end = PreciseTime::now();
 

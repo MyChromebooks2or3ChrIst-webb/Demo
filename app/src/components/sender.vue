@@ -129,7 +129,7 @@ export default {
       D2: null,
       E: null,
       C: null,      
-      local_gateway: 'ws://aowatchsea.xyz:8546',
+      local_gateway: 'ws://localhost:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       gateway_util: '',
       public_credential: '',
