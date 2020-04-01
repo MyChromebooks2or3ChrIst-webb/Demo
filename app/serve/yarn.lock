@@ -2,16 +2,6 @@
 # yarn lockfile v1
 
 
-"@types/lodash@^4.14.132":
-  version "4.14.149"
-  resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.149.tgz#1342d63d948c6062838fbf961012f74d4e638440"
-  integrity sha1-E0LWPZSMYGKDj7+WEBL3TU5jhEA=
-
-"@types/node@^12.0.2":
-  version "12.12.14"
-  resolved "https://registry.npm.taobao.org/@types/node/download/@types/node-12.12.14.tgz?cache=0&sync_timestamp=1574724301806&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fnode%2Fdownload%2F%40types%2Fnode-12.12.14.tgz#1c1d6e3c75dba466e0326948d56e8bd72a1903d2"
-  integrity sha1-HB1uPHXbpGbgMmlI1W6L1yoZA9I=
-
 accepts@~1.3.5:
   version "1.3.7"
   resolved "https://registry.npm.taobao.org/accepts/download/accepts-1.3.7.tgz#531bc726517a3b2b41f850021c6cc15eaab507cd"
@@ -185,15 +175,6 @@ express@~4.16.1:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
-fast-csv@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.npm.taobao.org/fast-csv/download/fast-csv-3.4.0.tgz#a284a907df57f06d44ac99fe23523345c2252528"
-  integrity sha1-ooSpB99X8G1ErJn+I1IzRcIlJSg=
-  dependencies:
-    "@types/lodash" "^4.14.132"
-    "@types/node" "^12.0.2"
-    lodash "^4.17.13"
-
 finalhandler@1.1.1:
   version "1.1.1"
   resolved "https://registry.npm.taobao.org/finalhandler/download/finalhandler-1.1.1.tgz#eebf4ed840079c83f4249038c9d703008301b105"
@@ -261,11 +242,6 @@ ipaddr.js@1.9.0:
   version "1.9.0"
   resolved "https://registry.npm.taobao.org/ipaddr.js/download/ipaddr.js-1.9.0.tgz#37df74e430a0e47550fe54a2defe30d8acd95f65"
   integrity sha1-N9905DCg5HVQ/lSi3v4w2KzZX2U=
-
-lodash@^4.17.13:
-  version "4.17.15"
-  resolved "https://registry.npm.taobao.org/lodash/download/lodash-4.17.15.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Flodash%2Fdownload%2Flodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
-  integrity sha1-tEf2ZwoEVbv+7dETku/zMOoJdUg=
 
 media-typer@0.3.0:
   version "0.3.0"

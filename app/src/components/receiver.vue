@@ -164,7 +164,7 @@ export default {
       tag: null,
       message: null,
       address: null,      
-      local_gateway: 'ws://localhost:8546',
+      local_gateway: 'ws://aowatchsea.xyz:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       public_credential: '',
       gateway_util: '',
@@ -246,8 +246,11 @@ export default {
     },
     async handleConnect() {
       this.b_loading = true;
+      let start = new Date().getTime();
       const wallet = new oasis.Wallet('0x7ec6102f6a2786c03b3daf6ac4772491f33925902326a0d2d83521b964a87402');
       const gateway = new oasis.gateways.Web3Gateway(this.local_gateway, wallet);
+      let end = new Date().getTime();
+      window.console.log(`Receiver connects to block chain: ${end - start} ms`)
       this.gateway_util = gateway;
       oasis.setGateway(gateway);
       this.status.push({
@@ -268,8 +271,11 @@ export default {
         this.$message['error']("Please check the address");
       }else{
         this.asyncConfirmLoading = true;
+        let start = new Date().getTime();
         const blackBox = await oasis.Service.at(new oasis.Address(this.address));
         const tag = await blackBox.fetch();
+        let end = new Date().getTime();
+        window.console.log(`Update: ${end - start} ms`);
         let secret = await blackBox.testhash();
         secret = secret.join('');
         // const testStr = '';
@@ -283,8 +289,11 @@ export default {
         'T': 'Loaded at ' + this.address
         });
 
+        let start2 = new Date().getTime();
         let info = await this.gateway_util.eth.getBlockByNumber('latest', true);
         this.openNotification('Deploy Information', info.transactions[0].hash, info.gasUsed, 'topRight');
+        let end2 = new Date().getTime();
+        window.console.log(`Inspection: ${end2 - start2} ms`);
 
         this.tag = tag;
         this.visible_addre = false;

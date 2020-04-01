@@ -129,7 +129,7 @@ export default {
       D2: null,
       E: null,
       C: null,      
-      local_gateway: 'ws://localhost:8546',
+      local_gateway: 'ws://aowatchsea.xyz:8546',
       public_gateway: 'https://gateway.devnet.oasiscloud.io',
       gateway_util: '',
       public_credential: '',
@@ -174,8 +174,11 @@ export default {
     },
     async handleConnect() {
       this.b_loading = true;
+      let start = new Date().getTime();
       const wallet = new oasis.Wallet('0xb5144c6bda090723de712e52b92b4c758d78348ddce9aa80ca8ef51125bfb308');
       const gateway = new oasis.gateways.Web3Gateway(this.local_gateway, wallet);
+      let end = new Date().getTime();
+      window.console.log(`Sender connects to block chain: ${end - start} ms`);
 
       this.gateway_util = gateway;
 
@@ -200,11 +203,14 @@ export default {
         return new Uint8Array(serviceBinary);
       });
 
+      let start = new Date().getTime();
       const blackBox = await oasis.deploy('hello world~', {
         bytecode,
         header: { confidential: false },
         gasLimit: '0xf42400'
       });
+      let end = new Date().getTime();
+      window.console.log(`Contract Gen: ${end - start} ms`);
       this.blackBox = blackBox;
       this.address = blackBox.address.hex;
       // let gas_cost = await gateway.eth.gasPrice();
@@ -220,11 +226,12 @@ export default {
         'C': 'pink',
         'T': 'Deployed at ' + this.address
       });
-      this.flag++;      
+      this.flag++;
       this.b_loading = false;
     },
     async handleStore() {
       this.b_loading = true;
+      let start = new Date().getTime();
       this.blackBox.store(this.tag);
       // this.$emit('activeR');
       this.$emit('switchAll');
@@ -233,8 +240,10 @@ export default {
       this.b_loading = false;
       // window.console.log(await this.gateway_util.eth.gasPrice());
       let info = await this.gateway_util.eth.getBlockByNumber('latest', true);
-      window.console.log(info);
+      // window.console.log(info);
       this.openNotification('Registration Information', info.transactions[0].hash, info.gasUsed, 'topLeft');
+      let end = new Date().getTime();
+      window.console.log(`Registration: ${end - start} ms`);
     },
     handleCancel() {
       this.b_loading = false;

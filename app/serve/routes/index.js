@@ -12,7 +12,7 @@ const options = {
   https: false
 };
 
-let connection = thrift.createHttpConnection('localhost', 2333, options);
+let connection = thrift.createHttpConnection('10.20.36.141', 2333, options);
 
 let client = thrift.createHttpClient(rpcSetup, connection);
 connection.on('error', (err) => {
